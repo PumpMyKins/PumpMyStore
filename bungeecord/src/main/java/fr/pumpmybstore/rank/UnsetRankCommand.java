@@ -57,14 +57,18 @@ public class UnsetRankCommand extends Command implements TabExecutor{
 		}
 		
 		PluginManager pm = this.main.getProxy().getPluginManager();
+		ProxiedPlayer player = this.main.getProxy().getPlayer(playerName);
 		
 		pm.dispatchCommand(sender, "lpb user " + playerName + " parent remove " + rank.name().toLowerCase()); // set group
 		
 		pm.dispatchCommand(sender, "bprefix-admin delete " + playerName); // delete prefix
 		
-		pm.dispatchCommand(sender, "pumpmybstore-kit-delete " + playerName); // kit delete
-		
-		ProxiedPlayer player = this.main.getProxy().getPlayer(playerName);
+		try {
+			this.main.getBddKitManager().removePlayerFromPlayersKitList(player);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		TextComponent txt = new TextComponent(Main.PLUGIN_PREFIX);
 		TextComponent txt1 = new TextComponent("Avantages " + rank.name() + " supprimés");

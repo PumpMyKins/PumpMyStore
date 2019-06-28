@@ -57,12 +57,15 @@ public class RenewRankCommand extends Command implements TabExecutor{
 		}
 		
 		PluginManager pm = this.main.getProxy().getPluginManager();
+		ProxiedPlayer player = this.main.getProxy().getPlayer(playerName);
 		
 		pm.dispatchCommand(sender, "bprefix-admin renew " + playerName + " " + rank.getModification()); // init prefix
 		
-		pm.dispatchCommand(sender, "pumpmybstore-kit-renew " + playerName + " " + rank.getKitPerServerChoice() + " " + rank.getKitGlobalRandom()); // kit renew
-		
-		ProxiedPlayer player = this.main.getProxy().getPlayer(playerName);
+		try {
+			this.main.getBddKitManager().updatePlayerInPlayersKitList(player, rank);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 		TextComponent txt = new TextComponent(Main.PLUGIN_PREFIX);
 		TextComponent txt1 = new TextComponent("Avantages " + rank.name() + " obtenus");
