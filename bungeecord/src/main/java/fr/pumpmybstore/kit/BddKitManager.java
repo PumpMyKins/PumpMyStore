@@ -24,13 +24,13 @@ public class BddKitManager {
 
 	public void addPlayerInPlayersKitList(ProxiedPlayer player, Rank rank) throws Exception {
 
-		this.mySql.sendUpdate("INSERT INTO `nickhistory`(`uuid`, `nick`, `date`) VALUES ('" + player.getUniqueId().toString() + "','','')");
+		this.mySql.sendUpdate("INSERT INTO `nickhistory`(`uuid`, `global_random`, `per_server_select`) VALUES ('" + player.getUniqueId().toString() + "','" + rank.getKitGlobalRandom() + "','" + rank.getKitPerServerChoice() + "')");
 
 	}
 	
 	public void updatePlayerInPlayersKitList(ProxiedPlayer player, Rank rank) throws Exception {
 
-		this.mySql.sendUpdate("");
+		this.mySql.sendUpdate("UPDATE `nickhistory` SET `global_random`='" + rank.getKitGlobalRandom() + "' ,`per_server_select`='" + rank.getKitPerServerChoice() + "',`init_date`=NOW() WHERE `uuid`='" + player.getUniqueId().toString() + "';");
 
 	}
 
