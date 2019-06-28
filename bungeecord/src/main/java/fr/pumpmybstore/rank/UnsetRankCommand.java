@@ -1,0 +1,92 @@
+package fr.pumpmybstore.rank;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.google.common.collect.Lists;
+
+import fr.pumpmybstore.Main;
+import net.md_5.bungee.api.ChatColor;
+import net.md_5.bungee.api.CommandSender;
+import net.md_5.bungee.api.chat.TextComponent;
+import net.md_5.bungee.api.connection.ProxiedPlayer;
+import net.md_5.bungee.api.plugin.Command;
+import net.md_5.bungee.api.plugin.PluginManager;
+import net.md_5.bungee.api.plugin.TabExecutor;
+
+public class UnsetRankCommand extends Command implements TabExecutor{
+
+	private Main main;
+
+	public UnsetRankCommand(Main main) {
+		super("pumpmybstore-unsetrank", "pumpmybstore.command.rank.unset");
+		this.main = main;
+	}
+
+	@Override
+	public void execute(CommandSender sender, String[] args) {
+		
+		if(sender instanceof ProxiedPlayer) {			
+			return;			
+		}
+		
+		if(args.length != 2) {
+			return;
+		}
+		
+		String playerName = args[0];
+		
+		if(!Lists.newArrayList(this.onTabComplete(sender, args)).contains(playerName)) {
+			return;
+		}
+		
+		String rankName = args[1];
+		Rank rank = null;
+		
+		for (Rank r : Rank.values()) {
+			
+			if(r.name().equals(rankName)) {
+				rank = r;
+				break;
+			}
+			
+		}
+		
+		if(rank == null) {
+			return;
+		}
+		
+		PluginManager pm = this.main.getProxy().getPluginManager();
+		
+		pm.dispatchCommand(sender, "lpb user " + playerName + " parent remove " + rank.name().toLowerCase()); // set group
+		
+		pm.dispatchCommand(sender, "bprefix-admin delete " + playerName); // delete prefix
+		
+		pm.dispatchCommand(sender, "pumpmybstore-kit-delete " + playerName); // kit delete
+		
+		ProxiedPlayer player = this.main.getProxy().getPlayer(playerName);
+		
+		TextComponent txt = new TextComponent(Main.PLUGIN_PREFIX);
+		TextComponent txt1 = new TextComponent("Avantages " + rank.name() + " supprimés");
+		txt1.setColor(ChatColor.RED);
+		txt.addExtra(txt1);			
+		player.sendMessage(txt);
+
+	}
+	
+	@Override
+	public Iterable<String> onTabComplete(CommandSender sender, String[] args) {
+		
+		List<String> l = new ArrayList<>();
+		
+		for (ProxiedPlayer player : this.main.getProxy().getPlayers()) {
+			
+			l.add(player.getName());
+			
+		}
+		
+		return l;
+		
+	}
+
+}

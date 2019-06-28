@@ -1,0 +1,6 @@
+rootProject.name = 'pumpmystore'
+
+include 'core'
+include 'forge'
+include 'bungeecord'
+
