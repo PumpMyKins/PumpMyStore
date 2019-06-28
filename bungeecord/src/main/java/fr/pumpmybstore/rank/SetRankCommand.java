@@ -62,7 +62,7 @@ public class SetRankCommand extends Command implements TabExecutor{
 		
 		pm.dispatchCommand(sender, "bprefix-admin init " + playerName + " " + rank.getModification()); // init prefix
 		
-		pm.dispatchCommand(sender, "pumpmybstore-kit-init " + playerName + " " + rank.getKitchoice() + " " + rank.getKitrandom()); // kit init
+		pm.dispatchCommand(sender, "pumpmybstore-kit-init " + playerName + " " + rank.getKitPerServerChoice() + " " + rank.getKitGlobalRandom()); // kit init
 		
 		ProxiedPlayer player = this.main.getProxy().getPlayer(playerName);
 		

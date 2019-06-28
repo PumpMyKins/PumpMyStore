@@ -60,7 +60,7 @@ public class RenewRankCommand extends Command implements TabExecutor{
 		
 		pm.dispatchCommand(sender, "bprefix-admin renew " + playerName + " " + rank.getModification()); // init prefix
 		
-		pm.dispatchCommand(sender, "pumpmybstore-kit-renew " + playerName + " " + rank.getKitchoice() + " " + rank.getKitrandom()); // kit renew
+		pm.dispatchCommand(sender, "pumpmybstore-kit-renew " + playerName + " " + rank.getKitPerServerChoice() + " " + rank.getKitGlobalRandom()); // kit renew
 		
 		ProxiedPlayer player = this.main.getProxy().getPlayer(playerName);
 		

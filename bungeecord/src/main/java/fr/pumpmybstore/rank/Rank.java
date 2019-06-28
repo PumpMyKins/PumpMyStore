@@ -20,11 +20,11 @@ public enum Rank {
 		return modification;
 	}
 
-	public int getKitchoice() {
+	public int getKitPerServerChoice() {
 		return kitchoice;
 	}
 
-	public int getKitrandom() {
+	public int getKitGlobalRandom() {
 		return kitrandom;
 	}
 	
