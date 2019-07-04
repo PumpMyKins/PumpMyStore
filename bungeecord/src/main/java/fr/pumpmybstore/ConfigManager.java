@@ -72,4 +72,44 @@ public class ConfigManager {
 		return this.configuration.getString("mysql.database");
 	}
 
+	public String getKitHost() {
+		return this.configuration.getString("mysql.kit.host");
+	}
+
+	public int getKitPort() {
+		return this.configuration.getInt("mysql.kit.port");
+	}
+
+	public String getKitUser() {
+		return this.configuration.getString("mysql.kit.username");
+	}
+
+	public String getKitPassword() {
+		return this.configuration.getString("mysql.kit.password");
+	}
+
+	public String getKitDatabase() {
+		return this.configuration.getString("mysql.kit.database");
+	}
+
+	public String getRankHost() {
+		return this.configuration.getString("mysql.rank.host");
+	}
+
+	public int getRankPort() {
+		return this.configuration.getInt("mysql.rank.port");
+	}
+
+	public String getRankUser() {
+		return this.configuration.getString("mysql.rank.username");
+	}
+
+	public String getRankPassword() {
+		return this.configuration.getString("mysql.rank.password");
+	}
+
+	public String getRankDatabase() {
+		return this.configuration.getString("mysql.rank.database");
+	}
+
 }
