@@ -1,4 +1,4 @@
-name: "${projectName}"
-version: "${project.version}"
-author: "${author}"
-main: "${mainClass}"
+name: ${projectName}
+version: ${project.version}
+author: ${author}
+main: ${mainClass}
