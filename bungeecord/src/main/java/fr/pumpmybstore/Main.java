@@ -43,7 +43,7 @@ public class Main extends Plugin{
 		
 		MySql kitMySql;
 		try {
-			MySQLCredentials credentials = new MySQLCredentials(this.configManager.getHost(),this.configManager.getPort(), this.configManager.getUser(), this.configManager.getPassword(), this.configManager.getDatabase());
+			MySQLCredentials credentials = new MySQLCredentials(this.configManager.getKitHost(),this.configManager.getKitPort(), this.configManager.getKitUser(), this.configManager.getKitPassword(), this.configManager.getKitDatabase());
 			kitMySql = new MySql(credentials);
 			kitMySql.openConnection();
 			this.getLogger().info("MySQL OK");
@@ -68,7 +68,7 @@ public class Main extends Plugin{
 		
 		MySql rankMySql;
 		try {
-			MySQLCredentials credentials = new MySQLCredentials(this.configManager.getHost(),this.configManager.getPort(), this.configManager.getUser(), this.configManager.getPassword(), this.configManager.getDatabase());
+			MySQLCredentials credentials = new MySQLCredentials(this.configManager.getRankHost(),this.configManager.getRankPort(), this.configManager.getRankUser(), this.configManager.getRankPassword(), this.configManager.getRankDatabase());
 			rankMySql = new MySql(credentials);
 			rankMySql.openConnection();
 			this.getLogger().info("MySQL OK");
