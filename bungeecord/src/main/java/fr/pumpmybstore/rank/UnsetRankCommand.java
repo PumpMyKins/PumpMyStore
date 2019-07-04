@@ -83,7 +83,7 @@ public class UnsetRankCommand extends Command implements TabExecutor{
 				main.getFtbuRanks().sendMessagingUpdate(player);
 				
 			}
-		}, 10, TimeUnit.SECONDS);
+		}, 5, TimeUnit.SECONDS);
 		
 		TextComponent txt = new TextComponent(Main.PLUGIN_PREFIX);
 		TextComponent txt1 = new TextComponent("Avantages " + rank.name() + " supprimés");
