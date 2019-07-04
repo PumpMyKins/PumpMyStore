@@ -2,6 +2,7 @@ package fr.pumpmybstore.rank;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import com.google.common.collect.Lists;
 
@@ -74,6 +75,15 @@ public class SetRankCommand extends Command implements TabExecutor{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		this.main.getProxy().getScheduler().schedule(this.main, new Runnable() {
+			
+			@Override
+			public void run() {
+				main.getFtbuRanks().sendMessagingUpdate(player);
+				
+			}
+		}, 10, TimeUnit.SECONDS);
 		
 		TextComponent txt = new TextComponent(Main.PLUGIN_PREFIX);
 		TextComponent txt1 = new TextComponent("Avantages " + rank.name() + " obtenus");
