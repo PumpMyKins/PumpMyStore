@@ -17,7 +17,7 @@ public class BddKitManager {
 
 	private void initMySql() throws Exception {
 
-		String createtable = "CREATE TABLE IF NOT EXISTS `playerskit` ( `uuid` VARCHAR(50) NOT NULL , `global_random` INT NOT NULL , `per_server_random` INT NOT NULL DEFAULT '0' ,`global_select` INT NOT NULL , `per_server_select` INT NOT NULL , `init_date` DATETIME NOT NULL DEFAULT NOW() , PRIMARY KEY (`uuid`), UNIQUE (`uuid`)) ENGINE = InnoDB;";
+		String createtable = "CREATE TABLE IF NOT EXISTS `playerskit` ( `uuid` VARCHAR(50) NOT NULL , `global_random` INT NOT NULL , `per_server_random` INT NOT NULL DEFAULT '0' ,`global_select` INT NOT NULL DEFAULT '0' , `per_server_select` INT NOT NULL , `init_date` DATETIME NOT NULL DEFAULT NOW() , PRIMARY KEY (`uuid`), UNIQUE (`uuid`)) ENGINE = InnoDB;";
 		this.mySql.sendUpdate(createtable);	
 
 	}
