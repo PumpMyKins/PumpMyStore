@@ -1,9 +1,14 @@
 package fr.pumpmybstore;
 
 
+import java.sql.SQLException;
+
 import fr.pumpmybstore.kit.BddKitManager;
+import fr.pumpmybstore.rank.FTBURanks;
 import fr.pumpmybstore.rank.SetRankCommand;
 import fr.pumpmybstore.rank.UnsetRankCommand;
+import fr.pumpmystore.core.MySql;
+import fr.pumpmystore.core.MySql.MySQLCredentials;
 import net.md_5.bungee.api.plugin.Plugin;
 import net.md_5.bungee.api.plugin.PluginManager;
 
@@ -13,9 +18,11 @@ public class Main extends Plugin{
 
 	private ConfigManager configManager;
 	private BddKitManager bddKitManager;
+	private FTBURanks ftbuRanks;
 
 	public ConfigManager getConfigManager() {return configManager;}
 	public BddKitManager getBddKitManager() {return bddKitManager;}
+	public FTBURanks getFtbuRanks() {return ftbuRanks;}
 
 	@Override
 	public void onEnable() {
@@ -32,6 +39,57 @@ public class Main extends Plugin{
 			return;
 
 		}
+		
+		
+		MySql kitMySql;
+		try {
+			MySQLCredentials credentials = new MySQLCredentials(this.configManager.getHost(),this.configManager.getPort(), this.configManager.getUser(), this.configManager.getPassword(), this.configManager.getDatabase());
+			kitMySql = new MySql(credentials);
+			kitMySql.openConnection();
+			this.getLogger().info("MySQL OK");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			this.getLogger().severe("JDBC error, plugin disabled !");
+			return;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			this.getLogger().severe("MySQL connection error, plugin disabled !");
+			return;
+		}
+		
+		try {
+			this.bddKitManager = new BddKitManager(kitMySql);
+		} catch (Exception e) {
+			e.printStackTrace();
+			this.getLogger().severe("MySQL error, plugin disabled !");
+			return;
+		}
+		
+		
+		MySql rankMySql;
+		try {
+			MySQLCredentials credentials = new MySQLCredentials(this.configManager.getHost(),this.configManager.getPort(), this.configManager.getUser(), this.configManager.getPassword(), this.configManager.getDatabase());
+			rankMySql = new MySql(credentials);
+			rankMySql.openConnection();
+			this.getLogger().info("MySQL OK");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			this.getLogger().severe("JDBC error, plugin disabled !");
+			return;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			this.getLogger().severe("MySQL connection error, plugin disabled !");
+			return;
+		}
+		
+		try {
+			this.ftbuRanks = new FTBURanks(rankMySql);
+		} catch (Exception e) {
+			e.printStackTrace();
+			this.getLogger().severe("MySQL error, plugin disabled !");
+			return;
+		}
+		
 
 		PluginManager pm = this.getProxy().getPluginManager();
 		pm.registerCommand(this, new SetRankCommand(this));
