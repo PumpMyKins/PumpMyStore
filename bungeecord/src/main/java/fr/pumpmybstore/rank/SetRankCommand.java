@@ -66,7 +66,12 @@ public class SetRankCommand extends Command implements TabExecutor{
 		try {
 			this.main.getBddKitManager().addPlayerInPlayersKitList(player, rank);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		try {
+			this.main.getFtbuRanks().setProxiedPlayerFTBURank(player, rank);
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		

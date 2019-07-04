@@ -66,7 +66,12 @@ public class UnsetRankCommand extends Command implements TabExecutor{
 		try {
 			this.main.getBddKitManager().removePlayerFromPlayersKitList(player);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		try {
+			this.main.getFtbuRanks().unsetProxiedPlayerFTBURank(player);
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
