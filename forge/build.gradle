@@ -33,6 +33,11 @@ minecraft {
     // makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
 }
 
+configurations {
+    embed
+    compile.extendsFrom(embed)
+}
+
 dependencies {
     // you may put jars on which you depend on in ./libs
     // or you may define them like so..
@@ -55,6 +60,8 @@ dependencies {
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
     compile project(':core')
+    embed project(':core')
+    
 }
 
 processResources {
@@ -76,3 +83,8 @@ processResources {
         exclude 'mcmod.info'
     }
 }
+
+jar {
+    from configurations.embed.collect { it.isDirectory() ? it : zipTree(it) }
+}
+
