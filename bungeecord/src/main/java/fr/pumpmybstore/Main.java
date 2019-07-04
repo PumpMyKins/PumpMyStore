@@ -84,12 +84,12 @@ public class Main extends Plugin{
 		
 		try {
 			this.ftbuRanks = new FTBURanks(rankMySql);
+			this.getProxy().registerChannel("FTBU-RANKS");
 		} catch (Exception e) {
 			e.printStackTrace();
 			this.getLogger().severe("MySQL error, plugin disabled !");
 			return;
 		}
-		
 
 		PluginManager pm = this.getProxy().getPluginManager();
 		pm.registerCommand(this, new SetRankCommand(this));
