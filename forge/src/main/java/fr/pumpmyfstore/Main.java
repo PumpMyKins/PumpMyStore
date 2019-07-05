@@ -26,15 +26,18 @@ public class Main
     public static final String VERSION = "1.0";
     public static final String DEP = FTBLib.THIS_DEP + ";required-after:ftbutilities";
 
-    private static Logger logger;
-    public static SimpleNetworkWrapper network;
+    public static Logger LOGGER;
+    public static SimpleNetworkWrapper NETWORK;
+    public static FTBUIntegration FTBUI;
+    public static ExecutorService EXEC;
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event)
     {
-        logger = event.getModLog();
-        network = NetworkRegistry.INSTANCE.newSimpleChannel("FTBU-RANKS");
-        network.registerMessage(MyMessage.Handler.class, MyMessage.class, 0, Side.SERVER);
+        LOGGER = event.getModLog();
+        EXEC = Executors.newSingleThreadScheduledExecutor();
+        NETWORK = NetworkRegistry.INSTANCE.newSimpleChannel("FTBU-RANKS");
+        NETWORK.registerMessage(MyMessage.Handler.class, MyMessage.class, 0, Side.SERVER);
         
     }
 
