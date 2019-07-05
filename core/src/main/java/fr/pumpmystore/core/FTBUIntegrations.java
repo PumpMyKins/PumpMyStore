@@ -1,5 +1,7 @@
 package fr.pumpmystore.core;
 
+import java.sql.ResultSet;
+
 public abstract class FTBUIntegrations {
 
 	private MySql mysql;
@@ -24,7 +26,19 @@ public abstract class FTBUIntegrations {
 	
 	public void addFTBURank(String uuid, String rankName) throws Exception {
 		
-		this.mysql.sendUpdate("INSERT INTO `ftbuplayerranks`(`uuid`, `rank`) VALUES ('" + uuid + "','" + rankName + "');");
+		this.mysql.sendUpdate("INSERT INTO `ftbuplayerranks`(`uuid`, `rank`) VALUES ('" + uuid + "','" + rankName.toLowerCase() + "');");
+		
+	}
+	
+	public String getFTBURank(String uuid) throws Exception {
+		
+		ResultSet rs = this.mysql.sendQuery("SELECT `rank` FROM `ftbuplayerranks` WHERE `uuid`='" + uuid + "';");
+		
+		if(!rs.first()) {
+			return new String();
+		}
+		
+		return rs.getString("rank");
 		
 	}
 	
