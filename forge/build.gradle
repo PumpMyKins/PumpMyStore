@@ -38,27 +38,17 @@ configurations {
     compile.extendsFrom(embed)
 }
 
+repositories {
+	mavenLocal()
+	maven { url "https://maven.latmod.com/" } //FTB Library, Item Filters, FTB Utilities
+	maven { url "http://dvs1.progwml6.com/files/maven" } //JEI
+}
+
 dependencies {
-    // you may put jars on which you depend on in ./libs
-    // or you may define them like so..
-    //compile "some.group:artifact:version:classifier"
-    //compile "some.group:artifact:version"
-      
-    // real examples
-    //compile 'com.mod-buildcraft:buildcraft:6.0.8:dev'  // adds buildcraft to the dev env
-    //compile 'com.googlecode.efficient-java-matrix-library:ejml:0.24' // adds ejml to the dev env
 
-    // the 'provided' configuration is for optional dependencies that exist at compile-time but might not at runtime.
-    //provided 'com.mod-buildcraft:buildcraft:6.0.8:dev'
+	deobfCompile "com.feed_the_beast.mods:FTBLib:5.+"
+	deobfProvided "com.feed_the_beast.mods:FTBUtilities:5.+"
 
-    // the deobf configurations:  'deobfCompile' and 'deobfProvided' are the same as the normal compile and provided,
-    // except that these dependencies get remapped to your current MCP mappings
-    //deobfCompile 'com.mod-buildcraft:buildcraft:6.0.8:dev'
-    //deobfProvided 'com.mod-buildcraft:buildcraft:6.0.8:dev'
-
-    // for more info...
-    // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
-    // http://www.gradle.org/docs/current/userguide/dependency_management.html
     compile project(':core')
     embed project(':core')
     
