@@ -37,7 +37,7 @@ public class Main
         LOGGER = event.getModLog();
         EXEC = Executors.newSingleThreadScheduledExecutor();
         NETWORK = NetworkRegistry.INSTANCE.newSimpleChannel("FTBU-RANKS");
-        NETWORK.registerMessage(MyMessage.Handler.class, MyMessage.class, 0, Side.SERVER);
+        NETWORK.registerMessage(UpdateMessage.Handler.class, UpdateMessage.class, 0, Side.SERVER);
         
     }
     
