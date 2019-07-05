@@ -28,10 +28,9 @@ public class FTBURanks extends FTBUIntegrations {
 	public void sendMessagingUpdate(ProxiedPlayer player) {
 		
 		  ByteArrayDataOutput out = ByteStreams.newDataOutput();
-		  out.writeUTF("force-update");
 		  out.writeUTF(player.getName());
 		  
-		  player.sendData("FTBU-RANKS", out.toByteArray());
+		  player.getServer().sendData("FTBU-RANKS", out.toByteArray());
 		
 	}
 
