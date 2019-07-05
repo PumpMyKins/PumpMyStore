@@ -40,11 +40,25 @@ public class Main
         NETWORK.registerMessage(MyMessage.Handler.class, MyMessage.class, 0, Side.SERVER);
         
     }
-
+    
     @EventHandler
-    public void init(FMLInitializationEvent event)
+    public void onServerStarted(FMLServerStartedEvent event)
     {
-        // some example code
-        logger.info("DIRT BLOCK >> {}", Blocks.DIRT.getRegistryName());
+        
+        try {
+            MySQLCredentials credentials = new MySQLCredentials(StoreConfig.host, StoreConfig.port, StoreConfig.username, StoreConfig.password, StoreConfig.database);
+            MySql mySql = new MySql(credentials);
+			mySql.openConnection();
+	        FTBUI = new FTBUIntegration(mySql);
+	        return;
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+        
     }
+
 }
