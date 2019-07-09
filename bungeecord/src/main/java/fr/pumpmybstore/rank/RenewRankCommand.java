@@ -68,7 +68,7 @@ public class RenewRankCommand extends Command implements TabExecutor{
 		}
 		
 		TextComponent txt = new TextComponent(Main.PLUGIN_PREFIX);
-		TextComponent txt1 = new TextComponent("Avantages " + rank.name() + " obtenus");
+		TextComponent txt1 = new TextComponent("Renouvellement des avantages " + rank.name() + " effectué");
 		txt1.setColor(ChatColor.AQUA);
 		txt.addExtra(txt1);			
 		player.sendMessage(txt);
