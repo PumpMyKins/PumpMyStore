@@ -5,6 +5,7 @@ import java.sql.SQLException;
 
 import fr.pumpmybstore.kit.BddKitManager;
 import fr.pumpmybstore.rank.FTBURanks;
+import fr.pumpmybstore.rank.RenewRankCommand;
 import fr.pumpmybstore.rank.SetRankCommand;
 import fr.pumpmybstore.rank.UnsetRankCommand;
 import fr.pumpmystore.core.MySql;
@@ -93,6 +94,7 @@ public class Main extends Plugin{
 
 		PluginManager pm = this.getProxy().getPluginManager();
 		pm.registerCommand(this, new SetRankCommand(this));
+		pm.registerCommand(this, new RenewRankCommand(this));
 		pm.registerCommand(this, new UnsetRankCommand(this));
 
 
