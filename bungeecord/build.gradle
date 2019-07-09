@@ -14,7 +14,7 @@ apply plugin: 'maven'
 apply plugin: 'eclipse'
 apply plugin: "com.github.johnrengelman.shadow"
 
-jar.archiveName = projectName + '-' + version + '.jar'
+jar.archiveName = projectID + '-' + version + '.jar'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
