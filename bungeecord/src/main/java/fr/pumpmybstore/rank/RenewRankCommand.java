@@ -59,7 +59,7 @@ public class RenewRankCommand extends Command implements TabExecutor{
 		PluginManager pm = this.main.getProxy().getPluginManager();
 		ProxiedPlayer player = this.main.getProxy().getPlayer(playerName);
 		
-		pm.dispatchCommand(sender, "bprefix-admin renew " + playerName + " " + rank.getModification()); // init prefix
+		pm.dispatchCommand(sender, "pumpmybchat renew " + playerName + " " + rank.getModification()); // init prefix
 		
 		try {
 			this.main.getBddKitManager().updatePlayerInPlayersKitList(player, rank);
