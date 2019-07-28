@@ -62,7 +62,7 @@ public class SetRankCommand extends Command implements TabExecutor{
 		
 		pm.dispatchCommand(sender, "lpb user " + playerName + " parent add " + rank.name().toLowerCase()); // set group
 		
-		pm.dispatchCommand(sender, "bprefix-admin init " + playerName + " " + rank.getModification()); // init prefix
+		pm.dispatchCommand(sender, "pumpmybchat init " + playerName + " " + rank.getModification()); // init prefix
 		
 		try {
 			this.main.getBddKitManager().addPlayerInPlayersKitList(player, rank);
