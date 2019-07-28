@@ -62,7 +62,7 @@ public class UnsetRankCommand extends Command implements TabExecutor{
 		
 		pm.dispatchCommand(sender, "lpb user " + playerName + " parent remove " + rank.name().toLowerCase()); // set group
 		
-		pm.dispatchCommand(sender, "bprefix-admin delete " + playerName); // delete prefix
+		pm.dispatchCommand(sender, "pumpmybchat delete " + playerName); // delete prefix
 		
 		try {
 			this.main.getBddKitManager().removePlayerFromPlayersKitList(player);
