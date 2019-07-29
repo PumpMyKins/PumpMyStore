@@ -19,7 +19,7 @@ public class RenewRankCommand extends Command implements TabExecutor{
 	private Main main;
 
 	public RenewRankCommand(Main main) {
-		super("pumpmybstore-renewrank", "pumpmybstore.command.rank.set");
+		super("pumpmybstore-renewrank", "pumpmybstore.command.rank.renew");
 		this.main = main;
 	}
 
